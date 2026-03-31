@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Mini Ecommerce API
+  version: 1.0.0
+
+paths:
+  /api/products:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    imageUrl:
+                      type: string
+                    description:
+                      type: string
+
+  /api/cart:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                quantity:
+                  type: integer
+
+  /api/cart/items/{productId}:
+    put:
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+    delete:
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+
+  /api/checkout:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shippingAddress:
+                  type: string
+                paymentMethod:
+                  type: string
+
+  /api/orders:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+
+  /api/orders/{orderId}:
+    get:
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
