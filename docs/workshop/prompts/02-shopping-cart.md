@@ -4,18 +4,9 @@
 
 As a customer, I want to add products to a cart so I can collect items before purchasing.
 
-## Frontend Acceptance Criteria
+## Guardrails
 
-- Cart page displaying all items with image, name, price, quantity
-- Quantity controls (+/- buttons or input)
-- Remove item button for each item
-- Subtotal per item (price × quantity)
-- Cart total at bottom of page
-- "Continue Shopping" button to go back to products
-- "Proceed to Checkout" button when cart has items
-- Cart icon in header showing item count (optional)
-
-## API Contract
+### API Contract
 
 ```yaml
 GET /api/cart
@@ -44,7 +35,7 @@ DELETE /api/cart/items/{productId}
 Response: { "items": [...], "total": ... }
 ```
 
-## Verification Test
+### Verification Test
 
 ```typescript
 // test: cart operations
@@ -67,3 +58,9 @@ await fetch("/api/cart/items/1", { method: "DELETE" });
 const empty = await (await fetch("/api/cart")).json();
 expect(empty.items.length).toBe(0);
 ```
+
+### Implementation Guidance
+
+- **Website**: Use UI/UX Pro Max skill to design the shopping cart page
+- **API**: Implement RESTful endpoints following the API Contract
+- **Both**: Website AND API must be implemented for the feature to be complete

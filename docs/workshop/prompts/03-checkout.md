@@ -4,18 +4,9 @@
 
 As a customer, I want to complete my purchase by providing shipping and payment information.
 
-## Frontend Acceptance Criteria
+## Guardrails
 
-- Checkout form with the following sections:
-  - **Shipping Address**: Street, City, State/Province, Zip/Postal Code, Country
-  - **Payment Method**: Radio buttons or dropdown (card, paypal, bank_transfer)
-  - **Order Summary**: List of items being purchased with quantities and prices
-- Form validation for required fields
-- Submit Order button
-- On success: show order confirmation with order ID
-- After successful checkout: cart should be cleared
-
-## API Contract
+### API Contract
 
 ```yaml
 POST /api/checkout
@@ -30,7 +21,7 @@ Response: {
 }
 ```
 
-## Verification Test
+### Verification Test
 
 ```typescript
 // test: checkout creates order and clears cart
@@ -59,3 +50,9 @@ expect(order.status).toBe("pending");
 const cart = await (await fetch("/api/cart")).json();
 expect(cart.items.length).toBe(0);
 ```
+
+### Implementation Guidance
+
+- **Website**: Use UI/UX Pro Max skill to design the checkout page
+- **API**: Implement RESTful endpoints following the API Contract
+- **Both**: Website AND API must be implemented for the feature to be complete

@@ -4,23 +4,9 @@
 
 As a customer, I want to view my order history and order details so I can track my purchases.
 
-## Frontend Acceptance Criteria
+## Guardrails
 
-- **Order History Page**:
-  - List of all past orders
-  - Each order shows: order ID, date, total, status
-  - Click on order to view details
-
-- **Order Detail Page**:
-  - Order ID, date, status
-  - List of items purchased with quantities and prices
-  - Shipping address
-  - Payment method used
-
-- Order status should have visual indicator (color-coded badge)
-- Status values: pending, paid, shipped, delivered
-
-## API Contract
+### API Contract
 
 ```yaml
 GET /api/orders
@@ -52,7 +38,7 @@ Response: {
 }
 ```
 
-## Verification Test
+### Verification Test
 
 ```typescript
 // test: order history and details
@@ -68,3 +54,9 @@ expect(details.orderId).toBe(1);
 expect(details.items).toBeDefined();
 expect(details.shippingAddress).toBeDefined();
 ```
+
+### Implementation Guidance
+
+- **Website**: Use UI/UX Pro Max skill to design the order management pages (order history and order details)
+- **API**: Implement RESTful endpoints following the API Contract
+- **Both**: Website AND API must be implemented for the feature to be complete
