@@ -1,2 +1,38 @@
+# Node.js/Vite
 node_modules/
 docs/superpowers/
+dist/
+.vite/
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.log
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
