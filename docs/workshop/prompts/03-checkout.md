@@ -4,13 +4,16 @@
 
 As a customer, I want to complete my purchase by providing shipping and payment information.
 
-## Acceptance Criteria
+## Frontend Acceptance Criteria
 
-- Enter shipping address
-- Select payment method (card, paypal, bank_transfer)
-- Review order summary before confirming
-- Creating order clears the cart
-- Returns order confirmation with order ID
+- Checkout form with the following sections:
+  - **Shipping Address**: Street, City, State/Province, Zip/Postal Code, Country
+  - **Payment Method**: Radio buttons or dropdown (card, paypal, bank_transfer)
+  - **Order Summary**: List of items being purchased with quantities and prices
+- Form validation for required fields
+- Submit Order button
+- On success: show order confirmation with order ID
+- After successful checkout: cart should be cleared
 
 ## API Contract
 

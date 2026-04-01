@@ -4,13 +4,16 @@
 
 As a customer, I want to add products to a cart so I can collect items before purchasing.
 
-## Acceptance Criteria
+## Frontend Acceptance Criteria
 
-- Add product to cart
-- View cart with all items, quantities, and total
-- Update item quantity
-- Remove item from cart
-- Cart persists between page navigation
+- Cart page displaying all items with image, name, price, quantity
+- Quantity controls (+/- buttons or input)
+- Remove item button for each item
+- Subtotal per item (price × quantity)
+- Cart total at bottom of page
+- "Continue Shopping" button to go back to products
+- "Proceed to Checkout" button when cart has items
+- Cart icon in header showing item count (optional)
 
 ## API Contract
 

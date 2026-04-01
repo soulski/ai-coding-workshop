@@ -4,12 +4,21 @@
 
 As a customer, I want to view my order history and order details so I can track my purchases.
 
-## Acceptance Criteria
+## Frontend Acceptance Criteria
 
-- View list of all past orders
-- Each order shows: order ID, date, total, status
-- View detailed order with items, shipping address
-- Order statuses: pending, paid, shipped, delivered
+- **Order History Page**:
+  - List of all past orders
+  - Each order shows: order ID, date, total, status
+  - Click on order to view details
+
+- **Order Detail Page**:
+  - Order ID, date, status
+  - List of items purchased with quantities and prices
+  - Shipping address
+  - Payment method used
+
+- Order status should have visual indicator (color-coded badge)
+- Status values: pending, paid, shipped, delivered
 
 ## API Contract
 
