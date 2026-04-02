@@ -27,6 +27,12 @@
 - **api:** .NET Core API (port 5000)
 - **web:** React Vite dev server (port 3000)
 
+## Database
+
+- Use PostgreSQL in Docker (not in-memory)
+- Data persists across restarts
+- Initialize with seed data from `docs/workshop/seed-data.json`
+
 ## Quality Gates
 
 - ESLint + Prettier must pass on frontend
