@@ -71,3 +71,26 @@ cd apps/web && npm run lint
 - Use TypeScript
 - CSS: Tailwind CSS or CSS Modules
 - State: React Context or local state (no Redux for simplicity)
+
+## Skills
+
+Available skills in `.opencode/skills/`. Use the `Skill` tool to load relevant skills before implementing features.
+
+| Skill | When to Use |
+|-------|-------------|
+| `ui-ux-pro-max` | Designing website pages (product listing, cart, checkout, orders) |
+| `react-best-practices` | React performance optimization, component patterns |
+| `dotnet-webapi` | .NET Core API development |
+| `rest-api-design` | RESTful API design patterns |
+| `playwright-e2e-testing` | E2E test structure and best practices |
+| `playwright-skill` | Browser automation (screenshots, dev server detection) |
+| `find-skills` | Discover new skills with `npx skills find [query]` |
+
+### Skill Usage
+
+- **Feature implementation:** Load `ui-ux-pro-max` + relevant domain skill before building
+- **API development:** Load `dotnet-webapi` + `rest-api-design`
+- **Testing:** Load `playwright-e2e-testing` or `playwright-skill`
+- **React components:** Load `react-best-practices`
+
+For new skills: `npx skills add <owner/repo@skill> -g -y` then copy to `.opencode/skills/`
