@@ -23,6 +23,9 @@ export function ProductQuickPreviewModal({ product, onClose }: ProductQuickPrevi
         <h2>{product.name}</h2>
         <p className="product-price">${product.price.toFixed(2)}</p>
         <p className="product-description">{product.description}</p>
+        <a className="button-primary" href={`/products/${product.id}`}>
+          View details
+        </a>
       </div>
     </div>
   );

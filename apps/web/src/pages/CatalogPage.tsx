@@ -63,6 +63,10 @@ export function CatalogPage() {
     }
   };
 
+  const handleClearFilters = () => {
+    setFilters({});
+  };
+
   return (
     <main className="catalog-page">
       <header className="catalog-header">
@@ -71,11 +75,18 @@ export function CatalogPage() {
         <p>Explore products by category and price, then open a quick preview before visiting the full detail page.</p>
       </header>
 
-      <ProductFilters filters={filters} categories={categories} onChange={setFilters} />
+      <ProductFilters filters={filters} categories={categories} onChange={setFilters} onClear={handleClearFilters} />
 
       {isLoading ? <p className="status">Loading products...</p> : null}
       {!isLoading && errorMessage ? <p className="status error">{errorMessage}</p> : null}
-      {!isLoading && !errorMessage && products.length === 0 ? <p className="status">No products match these filters.</p> : null}
+      {!isLoading && !errorMessage && products.length === 0 ? (
+        <div className="status">
+          <p>No products match these filters.</p>
+          <button type="button" className="button-secondary" onClick={handleClearFilters}>
+            Reset filters
+          </button>
+        </div>
+      ) : null}
       {!isLoading && !errorMessage && products.length > 0 ? (
         <ProductGrid products={products} onQuickPreview={handleQuickPreview} />
       ) : null}

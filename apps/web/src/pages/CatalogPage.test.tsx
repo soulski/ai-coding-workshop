@@ -25,6 +25,7 @@ const productList: Product[] = [
 ];
 
 const filteredList: Product[] = [...productList];
+const emptyList: Product[] = [];
 
 const productDetail: Product = {
   id: 1,
@@ -75,5 +76,51 @@ describe("CatalogPage", () => {
 
     await userEvent.click(await screen.findByRole("button", { name: /quick preview/i }));
     expect(await screen.findByText(productDetail.description)).toBeInTheDocument();
+    expect(await screen.findByRole("link", { name: /view details/i })).toHaveAttribute("href", "/products/1");
+  });
+
+  it("clears filters from filter controls", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(mockJsonResponse(productList))
+      .mockResolvedValueOnce(mockJsonResponse(filteredList))
+      .mockResolvedValueOnce(mockJsonResponse(productList));
+
+    vi.stubGlobal("fetch", fetchMock);
+    render(<CatalogPage />);
+
+    await screen.findByText("Wireless Bluetooth Headphones");
+    const categorySelect = screen.getByLabelText(/category/i);
+
+    await userEvent.selectOptions(categorySelect, "Electronics");
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenLastCalledWith(expect.stringContaining("/api/products?category=Electronics"));
+    });
+
+    await userEvent.click(screen.getByRole("button", { name: /clear filters/i }));
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenLastCalledWith("/api/products");
+    });
+    expect(categorySelect).toHaveValue("");
+  });
+
+  it("shows empty state reset action and reloads unfiltered products", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(mockJsonResponse(productList))
+      .mockResolvedValueOnce(mockJsonResponse(emptyList))
+      .mockResolvedValueOnce(mockJsonResponse(productList));
+
+    vi.stubGlobal("fetch", fetchMock);
+    render(<CatalogPage />);
+
+    await screen.findByText("Wireless Bluetooth Headphones");
+    await userEvent.selectOptions(screen.getByLabelText(/category/i), "Electronics");
+    expect(await screen.findByText(/no products match these filters/i)).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: /reset filters/i }));
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenLastCalledWith("/api/products");
+    });
   });
 });

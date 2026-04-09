@@ -6,9 +6,10 @@ type ProductFiltersProps = {
   filters: ProductFiltersState;
   categories: string[];
   onChange: (nextFilters: ProductFiltersState) => void;
+  onClear: () => void;
 };
 
-export function ProductFilters({ filters, categories, onChange }: ProductFiltersProps) {
+export function ProductFilters({ filters, categories, onChange, onClear }: ProductFiltersProps) {
   const onFieldChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const fieldName = event.target.name as keyof ProductFiltersState;
 
@@ -58,6 +59,13 @@ export function ProductFilters({ filters, categories, onChange }: ProductFilters
           onChange={onFieldChange}
           placeholder="1000"
         />
+      </div>
+
+      <div className="field-group">
+        <label htmlFor="clearFilters">Actions</label>
+        <button id="clearFilters" type="button" className="button-secondary" onClick={onClear}>
+          Clear filters
+        </button>
       </div>
     </section>
   );
