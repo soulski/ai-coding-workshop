@@ -1,15 +1,12 @@
 services:
   postgres:
     image: postgres:15
-    container_name: ecommerce-postgres
     environment:
       POSTGRES_DB: ecommerce
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -18,12 +15,12 @@ services:
 
   api:
     build:
-      context: ./apps/api
-      dockerfile: Dockerfile
-    container_name: ecommerce-api
+      context: .
+      dockerfile: apps/api/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=ecommerce;Username=postgres;Password=postgres"
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=ecommerce;Username=postgres;Password=postgres
     ports:
       - "5000:8080"
     depends_on:
@@ -32,15 +29,9 @@ services:
 
   web:
     build:
-      context: ./apps/web
+      context: apps/web
       dockerfile: Dockerfile
-    container_name: ecommerce-web
-    environment:
-      VITE_API_URL: http://localhost:5000
     ports:
       - "3000:3000"
     depends_on:
       - api
-
-volumes:
-  postgres_data:
