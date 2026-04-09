@@ -25,6 +25,44 @@ paths:
                       type: string
                     description:
                       type: string
+                    category:
+                      type: string
+
+  /api/products/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  imageUrl:
+                    type: string
+                  description:
+                    type: string
+                  category:
+                    type: string
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 
   /api/cart:
     get:
