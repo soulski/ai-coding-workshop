@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -76,7 +76,8 @@ describe("CatalogPage", () => {
 
     await userEvent.click(await screen.findByRole("button", { name: /quick preview/i }));
     expect(await screen.findByText(productDetail.description)).toBeInTheDocument();
-    expect(await screen.findByRole("link", { name: /view details/i })).toHaveAttribute("href", "/products/1");
+    const dialog = await screen.findByRole("dialog", { name: /quick preview for/i });
+    expect(within(dialog).getByRole("link", { name: /view details/i })).toHaveAttribute("href", "/products/1");
   });
 
   it("clears filters from filter controls", async () => {

@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "tsc && vite build",
     "lint": "eslint . --no-config-lookup --ext .ts,.tsx --parser @typescript-eslint/parser --parser-options ecmaVersion:latest --parser-options sourceType:module --parser-options ecmaFeatures.jsx:true --global document --global window --global navigator --global HTMLElement",
-    "test": "node -e \"const { spawnSync } = require('node:child_process'); const args = process.argv.slice(1).filter((arg) => arg !== '--runInBand'); const result = spawnSync(process.platform === 'win32' ? 'npx.cmd' : 'npx', ['vitest', ...args], { stdio: 'inherit', shell: false }); process.exit(result.status ?? 1);\""
+    "test": "node -e \"const { spawnSync } = require('node:child_process'); const args = process.argv.slice(1).filter((arg) => arg !== '--runInBand'); const result = spawnSync(process.platform === 'win32' ? 'npx.cmd' : 'npx', ['vitest', 'run', ...args], { stdio: 'inherit', shell: false }); process.exit(result.status ?? 1);\" --"
   },
   "dependencies": {
     "react": "^18.2.0",

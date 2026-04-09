@@ -62,8 +62,8 @@ export function ProductFilters({ filters, categories, onChange, onClear }: Produ
       </div>
 
       <div className="field-group">
-        <label htmlFor="clearFilters">Actions</label>
-        <button id="clearFilters" type="button" className="button-secondary" onClick={onClear}>
+        <span>Actions</span>
+        <button type="button" className="button-secondary" onClick={onClear} aria-label="Clear filters">
           Clear filters
         </button>
       </div>
